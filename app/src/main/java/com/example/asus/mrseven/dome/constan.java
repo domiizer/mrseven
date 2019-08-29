@@ -16,5 +16,6 @@ public class constan {
     public static ArrayList<bulletMain> c_arrBullet=new ArrayList<>();
 //    public static ArrayList<Monster> c_arrMonster=new ArrayList<>();
     public static Bitmap fram;
+    public static boolean changeColor=false;
 
 }

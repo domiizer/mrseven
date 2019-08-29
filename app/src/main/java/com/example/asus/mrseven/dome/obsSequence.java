@@ -1,7 +1,11 @@
 package com.example.asus.mrseven.dome;
 
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.Region;
 import android.util.Log;
 
 import com.example.asus.mrseven.framework.FMXGraphics;
@@ -23,10 +27,16 @@ public class obsSequence {
     private float m_fCountDelayBU = 0, m_fCountDelaySW = 0, m_fCountDelaySP = 0;
     private int m_dGabBU = 0, m_dGabSW = 0, m_dGabSP = 0; // =m_fCountDelayBU-m_dGabBU
     private int m_dBulletSecBU = 20, m_dBulletSecSW = 5, m_dBulletSecSP = 5;
+    public int x1, y1, x2, y2, x3, y3, x4, y4;
+    Canvas canvas;
+    Paint paint;
     public obsSequence() {
         m_strObsType = "SKY";
         m_arrObsSet = new ArrayList<>();
-
+        canvas=new Canvas(constan.fram);
+        paint = new Paint();
+        paint.setColor(Color.LTGRAY);
+        paint.setStyle(Paint.Style.FILL);
         m_objObsSet = new obsSet();
         m_objObsSet.initSampleSet(-1);
         m_objObsSet.m_fTriggerTL = 20;
@@ -45,6 +55,15 @@ public class obsSequence {
         m_objObsSet.initSampleSet(2);
         m_arrObsSet.add(m_objObsSet);
 
+
+        x1 = (int) (constan.SCREEN_WIDTH / 2 - 10 );
+        y1 = (int) (constan.SCREEN_HEIGHT - 100 );
+        x2 = (int) (constan.SCREEN_WIDTH / 2 - 10 )+10;
+        y2 = (int) (constan.SCREEN_HEIGHT - 100 );
+        x3 = (int) (constan.SCREEN_WIDTH / 2 - 10 )+10;
+        y3 = (int) (constan.SCREEN_HEIGHT - 100 )+10;
+        x4 = (int) (constan.SCREEN_WIDTH / 2 - 10 );
+        y4 = (int) (constan.SCREEN_HEIGHT - 100 )+10;
     }
 
     public void SampleSequence() {
@@ -72,6 +91,15 @@ public class obsSequence {
         ccaas+=2;
         m_fCountDelayBU +=  2;
         m_dGabBU = (int) m_fCountDelayBU;
+
+        x1 = (int) (constan.SCREEN_WIDTH / 2 - 10 );
+        y1 = (int) (constan.SCREEN_HEIGHT - 100 );
+        x2 = (int) (constan.SCREEN_WIDTH / 2 - 10+biger1 )+10;
+        y2 = (int) (constan.SCREEN_HEIGHT - 100 );
+        x3 = (int) (constan.SCREEN_WIDTH / 2 - 10+biger1 )+10;
+        y3 = (int) (constan.SCREEN_HEIGHT - 100 +biger0)+10;
+        x4 = (int) (constan.SCREEN_WIDTH / 2 - 10 );
+        y4 = (int) (constan.SCREEN_HEIGHT - 100 +biger0)+10;
         if (m_fCountDelayBU >= m_dBulletSecBU) {
             constan.c_arrBullet.add(new bulletHeros(constan.SCREEN_WIDTH / 2 - (constan.shipsdf.getWidth() / 3 / 2) + constan.shipsdf.getWidth() / 3 / 2, constan.SCREEN_HEIGHT-constan.shipsizeH));
             m_fCountDelayBU = (m_fCountDelayBU - m_dGabBU);
@@ -79,6 +107,7 @@ public class obsSequence {
         for (int i = 0; i <= m_dNowSetID; i++) {
             m_arrObsSet.get(i).update(deltaTime);
             for (int j = 0; j <= m_arrObsSet.get(i).m_arrMonster.size() - 1; j++) {
+//                if (getBoundaryPath().op((m_arrObsSet.get(i).m_arrMonster.get(j).getBoundaryPath()), Region.Op.INTERSECT)) {
                 if (MissileAssis().intersect(m_arrObsSet.get(i).m_arrMonster.get(j).getBounds())) {
 //                    xx = (int) m_arrObsSet.get(i).m_arrMonster.get(j).locateX;
 //                    yy = (int) m_arrObsSet.get(i).m_arrMonster.get(j).locateY;
@@ -91,8 +120,8 @@ public class obsSequence {
                     }
                 } else if (biger1 <= constan.SCREEN_HEIGHT) {
 //                    tte = false;
-                    biger0 +=  15;
-                    biger1 += 60;
+                    biger0 +=  deltaTime*0.01*15;
+                    biger1 += deltaTime*0.01*60;
                 } else {
                     tte = false;
                     biger0 = 0;
@@ -135,5 +164,31 @@ public class obsSequence {
     public Rect MissileAssis() {
         return new Rect((int) (constan.SCREEN_WIDTH / 2 - 10 - biger0), (int) (constan.SCREEN_HEIGHT - 100 - biger1), (int) (constan.SCREEN_WIDTH / 2 + 10 + biger0), constan.SCREEN_HEIGHT - 100);
     }
+    public Region getBoundaryPath() {
+//        Paint wallpaint = new Paint();
 
+//        paint.setColor(Color.MAGENTA);
+        Path wallpath = new Path();
+        int a=0;
+        wallpath.reset(); // only needed when reusing this path for a new build
+        double cenX = (x4 + x3 + x2 + x1) / 4, cenY = (y4 + y3 + y2 + y1) / 4;
+        double xp1 = (cenX) + (x1 - (cenX)) * Math.cos(Math.toRadians(a - 90)) - (y1 - (cenY)) * Math.sin(Math.toRadians(a - 90)), yp1 = (cenY) + (x1 - (cenX)) * Math.sin(Math.toRadians(a - 90)) + (y1 - (cenY)) * Math.cos(Math.toRadians(a - 90));
+        double xp2 = (cenX) + (x2 - (cenX)) * Math.cos(Math.toRadians(a - 90)) - (y2 - (cenY)) * Math.sin(Math.toRadians(a - 90)), yp2 = (cenY) + (x2 - (cenX)) * Math.sin(Math.toRadians(a - 90)) + (y2 - (cenY)) * Math.cos(Math.toRadians(a - 90));
+        double xp3 = (cenX) + (x3 - (cenX)) * Math.cos(Math.toRadians(a - 90)) - (y3 - (cenY)) * Math.sin(Math.toRadians(a - 90)), yp3 = (cenY) + (x3 - (cenX)) * Math.sin(Math.toRadians(a - 90)) + (y3 - (cenY)) * Math.cos(Math.toRadians(a - 90));
+        double xp4 = (cenX) + (x4 - (cenX)) * Math.cos(Math.toRadians(a - 90)) - (y4 - (cenY)) * Math.sin(Math.toRadians(a - 90)), yp4 = (cenY) + (x4 - (cenX)) * Math.sin(Math.toRadians(a - 90)) + (y4 - (cenY)) * Math.cos(Math.toRadians(a - 90));
+        wallpath.moveTo((float) (xp1), (float) (yp1)); // used for first point
+        wallpath.lineTo((float) (xp2), (float) (yp2));
+        wallpath.lineTo((float) (xp3), (float) (yp3));
+        wallpath.lineTo((float) (xp4), (float) (yp4));
+        wallpath.lineTo((float) (xp1), (float) (yp1)); // there is a setLastPoint action but i found it not to work as expected
+//        canvas.drawPath(wallpath,wallpaint);
+        Path path1 = new Path();
+        Region region1 = new Region(0, 0, 1000, 1000);
+        Region region2 = new Region(0, 0, 1000, 1000);
+        canvas.drawPath(wallpath, paint);
+//        canvas.drawPath(path1,wallpaint);
+        region1.setPath(wallpath, region1);
+//        region2.setPath(path1, region2);
+        return region1;
+    }
 }

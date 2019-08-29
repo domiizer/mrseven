@@ -13,8 +13,12 @@ public class bulletHeros extends bulletMain {
     public bulletHeros(float x, float y) {
         super(x, y);
         this.m_fDamage=0;
-        this.paint.setColor(Color.rgb(255, 255, 0));
 
+        if (constan.changeColor) {
+            this.paint.setColor(Color.rgb(255, 255, 0));
+        }else {
+            this.paint.setColor(Color.rgb(102, 204, 255));
+        }
     }
 
     @Override
@@ -27,6 +31,9 @@ public class bulletHeros extends bulletMain {
 
     @Override
     public void paint(float deltaTime, FMXGraphics g) {
+
+        g.drawLine((int) (m_fPosX), (int) (m_fPosY), (int) m_fPosX,0, Color.GREEN);
+
         x1 = (int) (m_fPosX + m_fUpdateX);
         y1 = (int) (m_fPosY + m_fUpdateY);
         x2 = (int) (m_fPosX + m_fUpdateX+m_fSideY);

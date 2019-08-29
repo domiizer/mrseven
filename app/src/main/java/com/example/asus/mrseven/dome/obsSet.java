@@ -29,8 +29,8 @@ public class obsSet {
             m_arrMonster.add(new Type14(-60, -30, 0));
         } else if (nID == 1) {
 //            m_fTriggerTL=60;
-            m_arrMonster.add(new Type31prismStage(constan.SCREEN_WIDTH - 100, 400, 0));
-            m_arrMonster.add(new mid1(50, 400, 5));
+            m_arrMonster.add(new Type31prismStage(constan.SCREEN_WIDTH/2 - 50, 400, 0));
+            m_arrMonster.add(new mid1(50, 450, 5));
         } else if (nID == 2) {
 //            m_fTriggerTL=200;
             m_arrItem.add(new Item(0, -200));

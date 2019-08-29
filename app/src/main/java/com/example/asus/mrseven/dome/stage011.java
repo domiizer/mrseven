@@ -45,9 +45,7 @@ public class stage011 extends FMXScreen {
     @Override
     public void update(float deltaTime) {
         controller.update(deltaTime);
-        red += deltaTime * 0.01 * 20;
-        green += deltaTime * 0.01 * 25;
-        blue += deltaTime * 0.01 * 30;
+
         checkTouch();
     }
 
@@ -65,7 +63,11 @@ public class stage011 extends FMXScreen {
     }
 
     private void PBullet(float deltaTime, FMXGraphics g) {
-        g.drawRect(RazorSW,Color.rgb((int )red,(int )green,(int )blue));
+        if (constan.changeColor) {
+            g.drawRect(RazorSW,Color.rgb(255, 255, 0));
+        }else {
+            g.drawRect(RazorSW,Color.rgb(102, 204, 255));
+        }
     }
 
     private void checkTouch() {
@@ -76,7 +78,13 @@ public class stage011 extends FMXScreen {
 
             if (event.type == FMXInput.TouchEvent.TOUCH_DOWN) {
                 if (RazorSW.contains(event.x, event.y)) {
-                    Log.i("uasidhfih", "checkTouch: ");
+                    if (!constan.changeColor){
+                        constan.changeColor=true;
+                    }
+                    else{
+                        constan.changeColor=false;
+                    }
+                    Log.i("asdfsdfffa", "checkTouch: "+constan.changeColor);
                 }
             }
         }

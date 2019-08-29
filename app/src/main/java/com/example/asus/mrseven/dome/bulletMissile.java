@@ -10,7 +10,8 @@ import com.example.asus.mrseven.framework.FMXGraphics;
 public class bulletMissile extends bulletMain {
     float m_fAngle;
     Monster m_ObjMonster;
-
+    float upx1;
+    float upx2;
 
     public bulletMissile(float x, float y, Monster monster) {
         super(x, y);
@@ -30,6 +31,8 @@ public class bulletMissile extends bulletMain {
         y3 = (int) (y + m_fSideY);
         x4 = (int) x;
         y4 = (int) (y + m_fSideY);
+        upx1=m_ObjMonster.locateX;
+        upx2=m_ObjMonster.locateY;
     }
 
     @Override
@@ -40,11 +43,12 @@ public class bulletMissile extends bulletMain {
 
     @Override
     public void paint(float deltaTime, FMXGraphics g) {
-        if (y1>m_ObjMonster.locateY) {
-        g.drawLine((int) (m_fPosX), (int) (m_fPosY), m_ObjMonster.locateX, m_ObjMonster.locateY, Color.MAGENTA);
-        a = (float) bearing(m_fPosX , m_fPosY, m_ObjMonster.locateX, m_ObjMonster.locateY);
-        m_fUpdateX += 2 *(Math.sin(Math.toRadians(a - 90)));
-        m_fUpdateY -= 2 * (Math.cos(Math.toRadians(a - 90)));
+//        if (y1>m_ObjMonster.locateY) {
+//            m_fLocateX=m_fPosX+m_fUpdateX;
+        g.drawLine((int) (x1), (int) (y1), m_ObjMonster.locateX, m_ObjMonster.locateY, Color.MAGENTA);
+        a = (float) bearing(x1 , y1, m_ObjMonster.locateX, m_ObjMonster.locateY);
+        m_fUpdateX += 5 *(Math.sin(Math.toRadians(a - 90)));
+        m_fUpdateY -= 5 * (Math.cos(Math.toRadians(a - 90)));
         x1 += (int) (m_fUpdateX);
         y1 += (int) (m_fUpdateY);
         x2 += (int) (m_fUpdateX);
@@ -53,10 +57,10 @@ public class bulletMissile extends bulletMain {
         y3 += (int) (m_fUpdateY);
         x4 += (int) (m_fUpdateX);
         y4 += (int) (m_fUpdateY);
-        }
-        else {
-            this.delete=true;
-        }
+//        }
+//        else {
+//            this.delete=true;
+//        }
 //        Log.i("m_ObjMonster", "paint: "+m_ObjMonster.locateY+"xxxx"+m_ObjMonster.locateX);
         super.paint(deltaTime, g);
     }
