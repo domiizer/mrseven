@@ -18,6 +18,7 @@ public class Monster {
     float m_fUpdatexSpeed;
     float m_fHP;
     float lr = 0;
+    int Type=0;
     int m_dSizeX,m_dSizeY;
     float m_fDelay;
     int locateX,locateY;
@@ -48,7 +49,7 @@ public class Monster {
 //        m_fUpdateY += deltaTime * 0.01 * 50;
         lr += gameController.m_objPosX.m_fAcc;
         locateX=(int) (m_fPosX + lr+ m_fUpdateX +m_dSizeX/2);
-        locateY=(int) (m_fPosY + m_fUpdateY +m_dSizeY);
+        locateY=(int) (m_fPosY + m_fUpdateY +m_dSizeY/2);
 
 
 

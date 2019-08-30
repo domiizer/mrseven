@@ -8,7 +8,7 @@ import com.example.asus.mrseven.framework.implementation.FMXAndroidGame;
 public class dome extends FMXAndroidGame {
     @Override
     public FMXScreen getInitScreen() {
-        return new stage011(this);
+        return new settingItem(this);
     }
 
     public boolean dispatchTouchEvent(MotionEvent ev) {

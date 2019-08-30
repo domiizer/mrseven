@@ -12,36 +12,44 @@ public class bulletHeros extends bulletMain {
 
     public bulletHeros(float x, float y) {
         super(x, y);
-        this.m_fDamage=0;
-
-        if (constan.changeColor) {
-            this.paint.setColor(Color.rgb(255, 255, 0));
+        if (constan.setfillter) {
+            if (constan.changeColor) {
+                this.paint.setColor(Color.rgb(255, 255, 0));
+                this.Yellow=true;
+                this.m_fDamage=20;
+            } else {
+                this.paint.setColor(Color.rgb(102, 204, 255));
+                this.m_fDamage=20;
+                this.Yellow=false;
+            }
         }else {
-            this.paint.setColor(Color.rgb(102, 204, 255));
+            this.paint.setColor(Color.rgb(255, 0, 0));
+            this.m_fDamage = 0;
         }
+        this.m_fSideX = 10;
+        this.m_fSideY = 20;
     }
 
     @Override
     public void update(float deltaTime) {
-        m_fUpdateY -= deltaTime * 0.01 * m_fSpeed;
-        m_fSideX=10;
-        m_fSideY=20;
+            m_fUpdateY -= deltaTime * 0.01 * m_fSpeed;
+
         super.update(deltaTime);
     }
 
     @Override
     public void paint(float deltaTime, FMXGraphics g) {
 
-        g.drawLine((int) (m_fPosX), (int) (m_fPosY), (int) m_fPosX,0, Color.GREEN);
+        g.drawLine((int) (m_fPosX), (int) (m_fPosY), (int) m_fPosX, 0, Color.GREEN);
 
         x1 = (int) (m_fPosX + m_fUpdateX);
         y1 = (int) (m_fPosY + m_fUpdateY);
-        x2 = (int) (m_fPosX + m_fUpdateX+m_fSideY);
+        x2 = (int) (m_fPosX + m_fUpdateX + m_fSideY);
         y2 = (int) (m_fPosY + m_fUpdateY);
-        x3 = (int) (m_fPosX + m_fUpdateX+m_fSideY);
-        y3 = (int) (m_fPosY + m_fUpdateY+m_fSideX);
+        x3 = (int) (m_fPosX + m_fUpdateX + m_fSideY);
+        y3 = (int) (m_fPosY + m_fUpdateY + m_fSideX);
         x4 = (int) (m_fPosX + m_fUpdateX);
-        y4 = (int) (m_fPosY + m_fUpdateY+m_fSideX);
+        y4 = (int) (m_fPosY + m_fUpdateY + m_fSideX);
         super.paint(deltaTime, g);
 
     }

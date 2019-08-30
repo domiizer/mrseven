@@ -44,7 +44,7 @@ public class stage011 extends FMXScreen {
 
     @Override
     public void update(float deltaTime) {
-        controller.update(deltaTime);
+
 
         checkTouch();
     }
@@ -53,11 +53,12 @@ public class stage011 extends FMXScreen {
     public void paint(float deltaTime) {
         FMXGraphics g = game.getGraphics();
         g.clearScreen(Color.BLACK);
+        controller.update(deltaTime);
         controller.paint(deltaTime, g);
         g.drawImage(ship_red, constan.SCREEN_WIDTH / 2 - ship_red.getWidth() / 3 / 2, constan.SCREEN_HEIGHT - ship_red.getHeight(), 0, 0, ship_red.getWidth() / 3, ship_red.getHeight());
         g.drawString("Y:" + controller.m_objPosY.m_fData, 50, 50, sector);
         g.drawString("X:" + controller.m_objPosX.m_fData, constan.SCREEN_WIDTH / 2, 50, sector);
-
+        if (constan.setfillter)
         PBullet(deltaTime, g);
 
     }
@@ -77,7 +78,7 @@ public class stage011 extends FMXScreen {
             FMXInput.TouchEvent event = touchEvents.get(i);
 
             if (event.type == FMXInput.TouchEvent.TOUCH_DOWN) {
-                if (RazorSW.contains(event.x, event.y)) {
+                if (RazorSW.contains(event.x, event.y)&&constan.setfillter) {
                     if (!constan.changeColor){
                         constan.changeColor=true;
                     }

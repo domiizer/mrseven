@@ -41,7 +41,6 @@ public class obsSequence {
         m_objObsSet.initSampleSet(-1);
         m_objObsSet.m_fTriggerTL = 20;
             m_arrObsSet.add(m_objObsSet);
-
         m_objObsSet = new obsSet();
         m_objObsSet.m_fTriggerTL = 30;
         m_objObsSet.initSampleSet(0);
@@ -101,7 +100,7 @@ public class obsSequence {
         x4 = (int) (constan.SCREEN_WIDTH / 2 - 10 );
         y4 = (int) (constan.SCREEN_HEIGHT - 100 +biger0)+10;
         if (m_fCountDelayBU >= m_dBulletSecBU) {
-            constan.c_arrBullet.add(new bulletHeros(constan.SCREEN_WIDTH / 2 - (constan.shipsdf.getWidth() / 3 / 2) + constan.shipsdf.getWidth() / 3 / 2, constan.SCREEN_HEIGHT-constan.shipsizeH));
+            constan.c_arrBullet.add(new bulletHeros(constan.SCREEN_WIDTH / 2 -5 , constan.SCREEN_HEIGHT-constan.shipsizeH));
             m_fCountDelayBU = (m_fCountDelayBU - m_dGabBU);
         }
         for (int i = 0; i <= m_dNowSetID; i++) {
@@ -132,7 +131,7 @@ public class obsSequence {
 
         }
 
-        for (int i = 0; i <= constan.c_arrBullet.size() - 1; i++) {
+        for (int i = 0; i <=constan.c_arrBullet.size() - 1; i++) {
             constan.c_arrBullet.get(i).m_fBGx = gameController.m_objPosX.m_fAcc;
             constan.c_arrBullet.get(i).update(deltaTime);
             if (constan.c_arrBullet.get(i).m_fLocateY < -10) {
@@ -149,7 +148,12 @@ public class obsSequence {
             m_arrObsSet.get(i).paint(deltaTime, g);
         }
         for (int i = 0; i < constan.c_arrBullet.size() - 1; i++) {
+//            constan.c_arrBullet.get(i).m_fBGx = gameController.m_objPosX.m_fAcc;
+//            constan.c_arrBullet.get(i).update(deltaTime);
             constan.c_arrBullet.get(i).paint(deltaTime, g);
+//            if (constan.c_arrBullet.get(i).m_fLocateY < -10) {
+//                constan.c_arrBullet.remove(i);
+//            }
         }
 //        g.drawRect(MissileAssis(),Color.LTGRAY);
 //        if (tte)

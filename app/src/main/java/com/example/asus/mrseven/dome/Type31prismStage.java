@@ -8,13 +8,14 @@ import com.example.asus.mrseven.framework.FMXGraphics;
 
 public class Type31prismStage extends Monster{
 
-    Monster m_objMonster;
     public Type31prismStage(float x, float y, float delay) {
         super(x, y, delay);
         this.m_fHP=10;
         this.m_dSizeX=100;
         this.m_dSizeY=50;
-        this.paint.setColor(Color.rgb(207, 208, 0));
+        this.paint.setColor(Color.rgb(207, 208, 0));//Yellow
+        this.Type=31;
+
     }
 
     @Override

@@ -25,6 +25,7 @@ public class bulletMain {
     float m_fBGx = 0;
     float m_fDamage;
     Canvas canvas;
+    boolean Yellow;
     public int x1, y1, x2, y2, x3, y3, x4, y4;
 //    float upper=0;
     public bulletMain(float x, float y) {

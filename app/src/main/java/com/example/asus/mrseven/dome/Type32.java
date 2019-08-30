@@ -1,5 +1,6 @@
 package com.example.asus.mrseven.dome;
 
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Region;
 
@@ -9,6 +10,8 @@ public class Type32 extends Monster {
 
     public Type32(float x, float y, float delay) {
         super(x, y, delay);
+        this.paint.setColor(Color.MAGENTA);
+        this.m_fHP=500;
     }
 
     @Override

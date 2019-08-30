@@ -29,7 +29,7 @@ public class obsSet {
             m_arrMonster.add(new Type14(-60, -30, 0));
         } else if (nID == 1) {
 //            m_fTriggerTL=60;
-            m_arrMonster.add(new Type31prismStage(constan.SCREEN_WIDTH/2 - 50, 400, 0));
+            m_arrMonster.add(new Type31prismStage(constan.SCREEN_WIDTH / 2 - 50, 400, 0));
             m_arrMonster.add(new mid1(50, 450, 5));
         } else if (nID == 2) {
 //            m_fTriggerTL=200;
@@ -49,16 +49,31 @@ public class obsSet {
             for (int i = 0; i <= m_arrMonster.size() - 1; i++) {
                 if (m_arrMonster.get(i).getBoundaryPath().op(constan.c_arrBullet.get(j).getBoundaryPath(), Region.Op.INTERSECT)) {
                     Log.i("asdfasdfasdf", "update: ");
-
-                    if (m_arrMonster.get(i).m_fHP - constan.c_arrBullet.get(j).m_fDamage <= 0) {
-                        m_arrMonster.remove(i);
-                        constan.c_arrBullet.remove(j);
-                        break;
+                    if (m_arrMonster.get(i).Type == 31) {
+                        if (m_arrMonster.get(i).m_fHP - constan.c_arrBullet.get(j).m_fDamage <= 0&&constan.setfillter&&constan.c_arrBullet.get(j).Yellow) {
+                            constan.c_arrBullet.remove(j);
+//                            m_arrMonster.add(new Type32(m_arrMonster.get(i).locateX-150,m_arrMonster.get(i).locateY,0));
+//                            m_arrMonster.add(new Type32(m_arrMonster.get(i).locateX+50,m_arrMonster.get(i).locateY,0));
+                            m_arrMonster.remove(i);
+                            break;
+                        }else if (constan.c_arrBullet.get(j).Yellow){
+                            m_arrMonster.get(i).m_fHP -= constan.c_arrBullet.get(j).m_fDamage;
+                            constan.c_arrBullet.remove(j);
+                        }else {
+//                            m_arrMonster.get(i).m_fHP -= constan.c_arrBullet.get(j).m_fDamage;
+                            constan.c_arrBullet.remove(j);
+                        }
                     } else {
-                        m_arrMonster.get(i).m_fHP -= constan.c_arrBullet.get(j).m_fDamage;
-                        constan.c_arrBullet.remove(j);
-                    }
+                        if (m_arrMonster.get(i).m_fHP - constan.c_arrBullet.get(j).m_fDamage <= 0) {
+                            m_arrMonster.remove(i);
+                            constan.c_arrBullet.remove(j);
+                            break;
+                        } else {
+                            m_arrMonster.get(i).m_fHP -= constan.c_arrBullet.get(j).m_fDamage;
+                            constan.c_arrBullet.remove(j);
+                        }
 
+                    }
                 }
             }
             if (constan.c_arrBullet.get(j).delete) {
