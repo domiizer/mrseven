@@ -15,6 +15,7 @@ public class constan {
     public  static int shipsizeW,shipsizeH;
     public static boolean setfillter=false;
     public static ArrayList<bulletMain> c_arrBullet=new ArrayList<>();
+    public static ObjHeros ObjHeros;
 //    public static ArrayList<Monster> c_arrMonster=new ArrayList<>();
     public static Bitmap fram;
     public static boolean changeColor=false;//true==Yellow

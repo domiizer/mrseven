@@ -16,10 +16,13 @@ public class obsSet {
     ArrayList<Monster> m_arrMonster;
     ArrayList<Item> m_arrItem;
 
+
     public obsSet() {
         m_arrType01 = new ArrayList<>();
         m_arrMonster = new ArrayList<>();
         m_arrItem = new ArrayList<>();
+
+
     }
 
     public void initSampleSet(int nID) {
@@ -52,8 +55,8 @@ public class obsSet {
                     if (m_arrMonster.get(i).Type == 31) {
                         if (m_arrMonster.get(i).m_fHP - constan.c_arrBullet.get(j).m_fDamage <= 0&&constan.setfillter&&constan.c_arrBullet.get(j).Yellow) {
                             constan.c_arrBullet.remove(j);
-//                            m_arrMonster.add(new Type32(m_arrMonster.get(i).locateX-150,m_arrMonster.get(i).locateY,0));
-//                            m_arrMonster.add(new Type32(m_arrMonster.get(i).locateX+50,m_arrMonster.get(i).locateY,0));
+                            m_arrMonster.add(new Type32(m_arrMonster.get(i).locateX-150,m_arrMonster.get(i).locateY,0));
+                            m_arrMonster.add(new Type32(m_arrMonster.get(i).locateX+50,m_arrMonster.get(i).locateY,0));
                             m_arrMonster.remove(i);
                             break;
                         }else if (constan.c_arrBullet.get(j).Yellow){
@@ -99,7 +102,8 @@ public class obsSet {
         for (int i = 0; i <= m_arrItem.size() - 1; i++) {
             m_arrItem.get(i).paint(deltaTime, g);
         }
-
+        constan.ObjHeros.update(deltaTime);
+        constan.ObjHeros.paint(deltaTime,g);
     }
 
 

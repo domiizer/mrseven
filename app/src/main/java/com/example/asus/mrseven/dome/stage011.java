@@ -39,13 +39,11 @@ public class stage011 extends FMXScreen {
         controller = new gameController();
         FMXButton b = game.getButton();
         RazorSW = b.drawBTRects(constan.SCREEN_WIDTH - 120, constan.SCREEN_HEIGHT - 120, 100, 100);
-
+        constan.ObjHeros=new ObjHeros(constan.SCREEN_WIDTH / 2 ,constan.SCREEN_HEIGHT - constan.shipsdf.getHeight()/2+30,80);
     }
 
     @Override
     public void update(float deltaTime) {
-
-
         checkTouch();
     }
 
@@ -55,6 +53,7 @@ public class stage011 extends FMXScreen {
         g.clearScreen(Color.BLACK);
         controller.update(deltaTime);
         controller.paint(deltaTime, g);
+
         g.drawImage(ship_red, constan.SCREEN_WIDTH / 2 - ship_red.getWidth() / 3 / 2, constan.SCREEN_HEIGHT - ship_red.getHeight(), 0, 0, ship_red.getWidth() / 3, ship_red.getHeight());
         g.drawString("Y:" + controller.m_objPosY.m_fData, 50, 50, sector);
         g.drawString("X:" + controller.m_objPosX.m_fData, constan.SCREEN_WIDTH / 2, 50, sector);

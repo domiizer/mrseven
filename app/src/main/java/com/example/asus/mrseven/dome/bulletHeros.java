@@ -32,14 +32,14 @@ public class bulletHeros extends bulletMain {
 
     @Override
     public void update(float deltaTime) {
-            m_fUpdateY -= deltaTime * 0.01 * m_fSpeed;
-
         super.update(deltaTime);
+        m_fUpdateY -= deltaTime * 0.01 * m_fSpeed;
+
     }
 
     @Override
     public void paint(float deltaTime, FMXGraphics g) {
-
+        super.paint(deltaTime, g);
         g.drawLine((int) (m_fPosX), (int) (m_fPosY), (int) m_fPosX, 0, Color.GREEN);
 
         x1 = (int) (m_fPosX + m_fUpdateX);
@@ -50,7 +50,7 @@ public class bulletHeros extends bulletMain {
         y3 = (int) (m_fPosY + m_fUpdateY + m_fSideX);
         x4 = (int) (m_fPosX + m_fUpdateX);
         y4 = (int) (m_fPosY + m_fUpdateY + m_fSideX);
-        super.paint(deltaTime, g);
+
 
     }
 
