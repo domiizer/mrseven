@@ -45,13 +45,16 @@ public class stage011 extends FMXScreen {
     @Override
     public void update(float deltaTime) {
         checkTouch();
+        Log.i("deltatimeaax", "paint:s1 "+deltaTime);
+        controller.update(deltaTime);
+
     }
 
     @Override
     public void paint(float deltaTime) {
         FMXGraphics g = game.getGraphics();
         g.clearScreen(Color.BLACK);
-        controller.update(deltaTime);
+
         controller.paint(deltaTime, g);
 
         g.drawImage(ship_red, constan.SCREEN_WIDTH / 2 - ship_red.getWidth() / 3 / 2, constan.SCREEN_HEIGHT - ship_red.getHeight(), 0, 0, ship_red.getWidth() / 3, ship_red.getHeight());

@@ -3,12 +3,16 @@ package com.example.asus.mrseven.dome;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Region;
 
 import com.example.asus.mrseven.framework.FMXGraphics;
 
-public class ObsType002 extends obstacleType01 {
-    public ObsType002(float x, float y) {
-        super(x, y);
+public class Type28Yellow extends obstacleType01 {
+
+    public Type28Yellow(float x, float y, int Radius) {
+        super(x, y, Radius);
+        this.paint.setColor(Color.rgb(207, 208, 0));//Yellow
+        this.Type=28;
     }
 
     @Override
@@ -18,7 +22,6 @@ public class ObsType002 extends obstacleType01 {
 
     @Override
     public void paint(float deltaTime, FMXGraphics g) {
-        g.drawRect((int)m_fPosX,(int)m_fPosY,50,50, Color.YELLOW);
         super.paint(deltaTime, g);
     }
 
@@ -28,7 +31,7 @@ public class ObsType002 extends obstacleType01 {
     }
 
     @Override
-    public RectF getBoundsf() {
-        return super.getBoundsf();
+    public Region getBoundaryPath() {
+        return super.getBoundaryPath();
     }
 }

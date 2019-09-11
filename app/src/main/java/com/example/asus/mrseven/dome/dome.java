@@ -2,13 +2,14 @@ package com.example.asus.mrseven.dome;
 
 import android.view.MotionEvent;
 
+import com.example.asus.mrseven.dome.ui.loading_LTR;
 import com.example.asus.mrseven.framework.FMXScreen;
 import com.example.asus.mrseven.framework.implementation.FMXAndroidGame;
 
 public class dome extends FMXAndroidGame {
     @Override
     public FMXScreen getInitScreen() {
-        return new settingItem(this);
+        return new loading_LTR(this);
     }
 
     public boolean dispatchTouchEvent(MotionEvent ev) {

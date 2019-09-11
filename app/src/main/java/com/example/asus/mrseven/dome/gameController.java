@@ -54,6 +54,7 @@ public class gameController {
     }
 
     public void update(float deltaTime) {
+        Log.i("deltatimeaax", "paint:gc "+deltaTime);
         m_objPosX.update(deltaTime);
         m_objPosY.update(deltaTime);
         m_objPosX.nowIn(m_objPosY.m_fData);

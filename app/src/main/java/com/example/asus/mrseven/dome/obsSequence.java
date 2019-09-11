@@ -134,10 +134,11 @@ public class obsSequence {
         for (int i = 0; i <=constan.c_arrBullet.size() - 1; i++) {
             constan.c_arrBullet.get(i).m_fBGx = gameController.m_objPosX.m_fAcc;
             constan.c_arrBullet.get(i).update(deltaTime);
-            if (constan.c_arrBullet.get(i).m_fLocateY < -10) {
+            if (constan.c_arrBullet.get(i).m_fLocateY < -10|constan.c_arrBullet.get(i).m_fLocateX>constan.SCREEN_WIDTH+30|constan.c_arrBullet.get(i).m_fLocateX<-30|constan.c_arrBullet.get(i).m_fLocateY > constan.SCREEN_HEIGHT+20) {
                 constan.c_arrBullet.remove(i);
             }
         }
+        Log.i("asdffdsasdf", "update: "+constan.c_arrBullet.size());
     }
     private void funBullet(float deltaTime) {
 

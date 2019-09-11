@@ -43,12 +43,13 @@ public class bulletMissile extends bulletMain {
 
     @Override
     public void paint(float deltaTime, FMXGraphics g) {
-//        if (y1>m_ObjMonster.locateY) {
-//            m_fLocateX=m_fPosX+m_fUpdateX;
+        if (y1>m_ObjMonster.locateY) {
+            m_fLocateX=m_fPosX+m_fUpdateX;
         g.drawLine((int) (x1), (int) (y1), m_ObjMonster.locateX, m_ObjMonster.locateY, Color.MAGENTA);
         a = (float) bearing(x1 , y1, m_ObjMonster.locateX, m_ObjMonster.locateY);
         m_fUpdateX += 5 *(Math.sin(Math.toRadians(a - 90)));
         m_fUpdateY -= 5 * (Math.cos(Math.toRadians(a - 90)));
+
         x1 += (int) (m_fUpdateX);
         y1 += (int) (m_fUpdateY);
         x2 += (int) (m_fUpdateX);
@@ -57,10 +58,10 @@ public class bulletMissile extends bulletMain {
         y3 += (int) (m_fUpdateY);
         x4 += (int) (m_fUpdateX);
         y4 += (int) (m_fUpdateY);
-//        }
-//        else {
-//            this.delete=true;
-//        }
+        }
+        else {
+            this.delete=true;
+        }
 //        Log.i("m_ObjMonster", "paint: "+m_ObjMonster.locateY+"xxxx"+m_ObjMonster.locateX);
         super.paint(deltaTime, g);
     }

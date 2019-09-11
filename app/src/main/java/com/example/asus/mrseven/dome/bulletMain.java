@@ -14,6 +14,7 @@ public class bulletMain {
     float m_fUpdateY;
     float m_fUpdateX;
     float m_fPosX;
+    String m_SGoSide;
     float m_fPosY;
     float m_fLocateX;
     float m_fLocateY;
@@ -37,6 +38,7 @@ public class bulletMain {
         paint.setStyle(Paint.Style.FILL);
         canvas=new Canvas(constan.fram);
         this.delete=false;
+        m_SGoSide="U";
     }
 
     public void update(float deltaTime) {
